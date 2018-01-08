@@ -1,0 +1,35 @@
+<ng-progress [color]="'blue'" [showSpinner]="false"></ng-progress>
+<section id="login">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-wrap">
+          <mat-card>
+            <form #f="ngForm" name="form" (ngSubmit)="f.form.valid && register()" novalidate>
+              <b>Register</b><b><a routerLink="/login" class="pull-right">Sign IN <i class="material-icons">trending_flat</i></a></b>
+              <mat-form-field class="full-width" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                <input type="email" matInput [(ngModel)]="model.email" name="email" #email="ngModel" placeholder="Email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+              </mat-form-field>
+              <div *ngIf="email.errors && email.errors.pattern" class="danger-color">Email is invalid</div>
+<!--               <div *ngIf="f.submitted && !email.valid" class="danger-color">Email is required</div>
+ -->              <mat-form-field class="full-width" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                <input type="password" matInput [(ngModel)]="model.password" name="password" #password="ngModel" placeholder="Password" required>
+              </mat-form-field>
+              <mat-form-field class="full-width" [ngClass]="{ 'has-error': f.submitted && !confirm_password.valid }">
+                <input type="confirm_password" matInput [(ngModel)]="model.confirm_password" name="confirm_password" #confirm_password="ngModel"
+                  placeholder="Confirm password" required>
+              </mat-form-field>
+              <mat-form-field class="full-width" [ngClass]="{ 'has-error': f.submitted && !date_of_birth.valid }">
+                <input matInput [matDatepicker]="picker" [(ngModel)]="model.date_of_birth" name="date_of_birth" #date_of_birth="ngModel"
+                  placeholder="Date of Birth" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              <button mat-raised-button color="primary">Submit</button>
+            </form>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
